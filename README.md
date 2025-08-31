@@ -98,14 +98,6 @@ python github_analyzer.py
 
 ### GitHub Token erstellen
 
-1. Gehe zu [GitHub Settings](https://github.com/settings/tokens)
-2. Klicke auf "Developer settings" → "Personal access tokens" → "Tokens (classic)"
-3. Klicke "Generate new token (classic)"
-4. Wähle die folgenden Scopes:
-   - `public_repo` (für öffentliche Repositories)
-   - `repo` (für private Repositories, falls benötigt)
-5. Kopiere den generierten Token
-
 ### Token verwenden
 
 ```python
@@ -125,39 +117,7 @@ export GITHUB_TOKEN="ghp_your_token_here"
 
 ## 📝 Beispiele
 
-### Beispiel 1: Detaillierte Repository-Analyse
-
-```python
-from github_analyzer import GitHubAnalyzer
-
-analyzer = GitHubAnalyzer("your_token")
-analyzer.analyze_repository("torvalds", "linux")
-```
-
-**Output:**
-```
-🔍 Analyzing repository: torvalds/linux
-==================================================
-📁 Repository: torvalds/linux
-📝 Description: Linux kernel source tree
-🌐 URL: https://github.com/torvalds/linux
-⭐ Stars: 150,000
-🍴 Forks: 45,000
-👀 Watchers: 150,000
-📅 Created: 2011-09-16
-🔄 Last Updated: 2023-12-01
-📏 Size: 3,500,000 KB
-⚖️ License: GPL-2.0
-
-==================================================
-🔤 Programming Languages:
-   C: 97.2% (3,402,450 bytes)
-   Assembly: 1.5% (52,500 bytes)
-   Shell: 0.8% (28,000 bytes)
-   ...
-```
-
-### Beispiel 2: Multiple Repositories vergleichen
+Multiple Repositories vergleichen
 
 ```python
 repos_to_compare = [
@@ -170,18 +130,7 @@ repos_to_compare = [
 analyzer.compare_repositories(repos_to_compare)
 ```
 
-### Beispiel 3: Eigene Analyse-Funktionen
 
-```python
-# Nur Contributor-Informationen abrufen
-contributors = analyzer.get_contributors("owner", "repo")
-for contributor in contributors[:5]:
-    print(f"{contributor['login']}: {contributor['contributions']} commits")
-
-# Nur Programmiersprachen abrufen
-languages = analyzer.get_languages("owner", "repo")
-print(f"Hauptsprache: {max(languages.keys(), key=languages.get)}")
-```
 
 ## 🚦 API-Limits
 
@@ -193,62 +142,8 @@ print(f"Hauptsprache: {max(languages.keys(), key=languages.get)}")
 - **5,000 Requests pro Stunde** für authentifizierte Requests
 - Empfohlen für regelmäßige Nutzung
 
-### Best Practices
-```python
-import time
 
-# Pause zwischen Requests einfügen
-for repo in multiple_repos:
-    analyzer.analyze_repository(owner, repo)
-    time.sleep(1)  # 1 Sekunde Pause
-```
 
-## 🔧 Erweiterte Funktionen
-
-### Custom Headers setzen
-
-```python
-analyzer = GitHubAnalyzer(token="your_token")
-analyzer.headers["Accept"] = "application/vnd.github.v4+json"  # GraphQL API
-```
-
-### Fehlerbehandlung
-
-```python
-try:
-    repo_info = analyzer.get_repo_info("owner", "repo")
-    if repo_info:
-        print(f"Repo gefunden: {repo_info['name']}")
-    else:
-        print("Repository nicht gefunden oder nicht zugänglich")
-except Exception as e:
-    print(f"Fehler: {e}")
-```
-
-## 🐛 Fehlerbehebung
-
-### Häufige Probleme
-
-1. **403 Forbidden**: Rate Limit erreicht
-   ```python
-   # Lösung: Token verwenden oder warten
-   analyzer = GitHubAnalyzer("your_token")
-   ```
-
-2. **404 Not Found**: Repository existiert nicht
-   ```python
-   # Prüfe Repository-Namen und Owner
-   repo_info = analyzer.get_repo_info("correct_owner", "correct_repo")
-   ```
-
-3. **Network Errors**:
-   ```python
-   import requests
-   try:
-       analyzer.analyze_repository("owner", "repo")
-   except requests.exceptions.RequestException as e:
-       print(f"Netzwerk-Fehler: {e}")
-   ```
 
 ## 🤝 Beitragen
 
@@ -277,30 +172,4 @@ venv\Scripts\activate  # Windows
 pip install -r requirements.txt
 ```
 
-### Code Style
 
-- Verwende Python PEP 8
-- Füge Docstrings für alle Funktionen hinzu
-- Schreibe Tests für neue Features
-
-## 📄 Lizenz
-
-Dieses Projekt steht unter der MIT Lizenz - siehe [LICENSE](LICENSE) Datei für Details.
-
-## 🙏 Danksagungen
-
-- [GitHub REST API](https://docs.github.com/en/rest) für die umfassende API
-- [Requests Library](https://requests.readthedocs.io/) für HTTP-Requests
-- Community-Beiträge und Feedback
-
-## 📞 Support
-
-Bei Fragen oder Problemen:
-
-1. **Issues**: [GitHub Issues](https://github.com/your-username/github-analyzer/issues)
-2. **Dokumentation**: [GitHub API Docs](https://docs.github.com/en/rest)
-3. **Community**: [Discussions](https://github.com/your-username/github-analyzer/discussions)
-
----
-
-**⭐ Wenn dir dieses Projekt gefällt, gib ihm einen Star auf GitHub!**
