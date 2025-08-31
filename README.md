@@ -1,6 +1,6 @@
 # GitHub Repository Analyzer
 
-Ein Python-Tool zur Analyse von GitHub-Repositories über die GitHub REST API.
+Ein lightweight AIO Python-Script zur Analyse von GitHub-Repositories über die GitHub REST API.
 
 ## 🚀 Überblick
 
