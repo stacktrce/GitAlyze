@@ -49,7 +49,7 @@ Der GitHub Repository Analyzer ist ein Python-Script, das detaillierte Analysen 
    pip install requests
    ```
 
-3. **Script ausführbar machen:**
+3. **Script ausführbar machen: (unter Linux benötigt)**
    ```bash
    chmod +x github_analyzer.py
    ```
