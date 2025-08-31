@@ -10,9 +10,8 @@ Ein Python-Tool zur Analyse von GitHub-Repositories über die GitHub REST API.
 - [Verwendung](#verwendung)
 - [Konfiguration](#konfiguration)
 - [Beispiele](#beispiele)
-- [API-Limits](#api-limits)
-- [Beitragen](#beitragen)
-- [Lizenz](#lizenz)
+
+
 
 ## 🚀 Überblick
 
@@ -143,17 +142,6 @@ analyzer.compare_repositories(repos_to_compare)
 - Empfohlen für regelmäßige Nutzung
 
 
-
-
-## 🤝 Beitragen
-
-Beiträge sind willkommen! Hier ist, wie du helfen kannst:
-
-1. **Fork** das Repository
-2. **Branch** erstellen: `git checkout -b feature/amazing-feature`
-3. **Commit** deine Änderungen: `git commit -m 'Add amazing feature'`
-4. **Push** zum Branch: `git push origin feature/amazing-feature`
-5. **Pull Request** erstellen
 
 ### Development Setup
 
